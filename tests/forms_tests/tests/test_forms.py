@@ -2994,7 +2994,7 @@ Good luck picking a username that doesn&#39;t already exist.</p>
         ]
 
         for args, kwargs, expected in testcases:
-            with self.subTest(args=args, kwargs=kwargs, expected=expected):
+            with self.subTest(args=args, kwargs=kwargs):
                 self.assertHTMLEqual(boundfield.label_tag(*args, **kwargs), expected)
 
     def test_boundfield_label_tag_no_id(self):

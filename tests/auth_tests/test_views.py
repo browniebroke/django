@@ -108,7 +108,7 @@ class AuthViewNamedURLTests(AuthViewsTestCase):
             ('password_reset_complete', [], {}),
         ]
         for name, args, kwargs in expected_named_urls:
-            with self.subTest(name=name, args=args, kwargs=kwargs):
+            with self.subTest(name=name):
                 try:
                     reverse(name, args=args, kwargs=kwargs)
                 except NoReverseMatch:

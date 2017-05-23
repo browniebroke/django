@@ -356,7 +356,7 @@ class DistanceFunctionsTests(TestCase):
             distance=Distance('point', hillsdale.point, spheroid=True)
         ).order_by('id')
         for i, c in enumerate(qs):
-            with self.subTest(i=i, c=c):
+            with self.subTest(c=c):
                 self.assertAlmostEqual(spheroid_distances[i], c.distance.m, tol)
         if postgis or spatialite:
             # PostGIS uses sphere-only distances by default, testing these as well.
@@ -364,7 +364,7 @@ class DistanceFunctionsTests(TestCase):
                 distance=Distance('point', hillsdale.point)
             ).order_by('id')
             for i, c in enumerate(qs):
-                with self.subTest(i=i, c=c):
+                with self.subTest(c=c):
                     self.assertAlmostEqual(sphere_distances[i], c.distance.m, tol)
 
     @no_oracle  # Oracle already handles geographic distance calculation.

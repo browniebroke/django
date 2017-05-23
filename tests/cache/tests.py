@@ -169,7 +169,7 @@ class DummyCacheTests(SimpleTestCase):
             'ascii2': {'x': 1}
         }
         for (key, value) in stuff.items():
-            with self.subTest(key=key, value=value):
+            with self.subTest(key=key):
                 cache.set(key, value)
                 self.assertIsNone(cache.get(key))
 
@@ -421,13 +421,13 @@ class BaseCacheTests:
         }
         # Test `set`
         for (key, value) in stuff.items():
-            with self.subTest(key=key, value=value):
+            with self.subTest(key=key):
                 cache.set(key, value)
                 self.assertEqual(cache.get(key), value)
 
         # Test `add`
         for (key, value) in stuff.items():
-            with self.subTest(key=key, value=value):
+            with self.subTest(key=key):
                 cache.delete(key)
                 cache.add(key, value)
                 self.assertEqual(cache.get(key), value)
@@ -437,7 +437,7 @@ class BaseCacheTests:
             cache.delete(key)
         cache.set_many(stuff)
         for (key, value) in stuff.items():
-            with self.subTest(key=key, value=value):
+            with self.subTest(key=key):
                 self.assertEqual(cache.get(key), value)
 
     def test_binary_string(self):
@@ -1530,7 +1530,6 @@ class CacheUtils(SimpleTestCase):
             with self.subTest(
                     initial_vary=initial_vary,
                     newheaders=newheaders,
-                    resulting_vary=resulting_vary
             ):
                 response = HttpResponse()
                 if initial_vary is not None:
@@ -1619,7 +1618,6 @@ class CacheUtils(SimpleTestCase):
             with self.subTest(
                     initial_cc=initial_cc,
                     newheaders=newheaders,
-                    expected_cc=expected_cc
             ):
                 response = HttpResponse()
                 if initial_cc is not None:
@@ -2197,8 +2195,7 @@ class TestWithTemplateResponse(SimpleTestCase):
         for initial_vary, newheaders, resulting_vary in headers:
             with self.subTest(
                     initial_vary=initial_vary,
-                    newheaders=newheaders,
-                    resulting_vary=resulting_vary
+                    newheaders=newheaders
             ):
                 template = engines['django'].from_string("This is a test")
                 response = TemplateResponse(HttpRequest(), template)

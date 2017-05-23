@@ -339,5 +339,5 @@ class AdminDocViewFunctionsTests(SimpleTestCase):
             (r'^a/?$', '/a/'),
         )
         for pattern, output in tests:
-            with self.subTest(pattern=pattern, output=output):
+            with self.subTest(pattern=pattern):
                 self.assertEqual(simplify_regex(pattern), output)

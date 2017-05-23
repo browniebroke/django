@@ -54,7 +54,7 @@ class DBTypeCasts(unittest.TestCase):
     def test_typeCasts(self):
         for k, v in TEST_CASES.items():
             for inpt, expected in v:
-                with self.subTest(k=k, inpt=inpt, expected=expected):
+                with self.subTest(k=k, inpt=inpt):
                     got = getattr(typecasts, k)(inpt)
                     self.assertEqual(
                         got,
